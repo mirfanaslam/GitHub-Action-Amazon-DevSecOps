@@ -22,7 +22,7 @@ jobs:
 
       # del the container
       - name: Delete old contailer
-        run: docker rm -f prodcont || true
+        run: docker rm -f prodcont-${{github.run_number}} || true
 
       # Build docker
       - name: Build docker file
