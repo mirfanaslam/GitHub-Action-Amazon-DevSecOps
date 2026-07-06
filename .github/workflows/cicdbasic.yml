@@ -21,12 +21,12 @@ jobs:
         uses: actions/checkout@v4
 
       # del the container
-      - name: Delete old contailer
-        run: docker rm -f prodcont || true
+      #- name: Delete old contailer
+      #  run: docker rm -f prodcont || true
 
       # Build docker
       - name: Build docker file
-        run: docker build -t prodapp .
+        run: docker build -t prodapp:${{github.run_number}} .
 
       # debug
       - name: debugit
@@ -37,6 +37,6 @@ jobs:
 
       # Run container
       - name: Run karo
-        run: docker run -d -p 5000:5000 --name prodcont prodapp
+        run: docker run -d -p 5000:5000 --name prodcont-${{github.run_number}} prodapp:${{github.run_number}}
         
  
