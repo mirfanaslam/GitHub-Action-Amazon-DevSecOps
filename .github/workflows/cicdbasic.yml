@@ -3,8 +3,10 @@ name: Basic cicd-main..
 on:
   workflow_dispatch:
   push:
-    branches:
-     - main
+    #paths:
+    # - 'ownproject/**' 
+     branches:
+      - main
 
 
 jobs:
