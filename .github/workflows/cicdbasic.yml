@@ -1,4 +1,4 @@
-name: Basic cicd-main
+name: Basic cicd-main..
 
 on:
   push:
