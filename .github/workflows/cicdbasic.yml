@@ -1,1 +1,32 @@
+name: Basic cicd-main
 
+on:
+  push:
+   paths:
+     - 'ownproject/**'
+   branches:
+     - main
+
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    defaults:
+      run:
+        working-directory: ownproject
+
+    steps:
+      # Checkout code
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      # Build docker
+      - name: Build docker file
+        run: docker build -t prodapp .
+
+      # Run container
+      - name: Run karo
+        run: docker run -d -p 5000:5000 --name prodcont prodapp
+        
+ 
