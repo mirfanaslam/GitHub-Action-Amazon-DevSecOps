@@ -28,6 +28,13 @@ jobs:
       - name: Build docker file
         run: docker build -t prodapp .
 
+      # debug
+      - name: debugit
+        run: |
+          pwd
+          ls -la
+          find . -name "requirements.txt"
+
       # Run container
       - name: Run karo
         run: docker run -d -p 5000:5000 --name prodcont prodapp
