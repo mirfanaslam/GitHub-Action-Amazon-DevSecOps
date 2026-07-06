@@ -20,6 +20,10 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
 
+      # del the container
+      - name: Delete old contailer
+        run: docker rm -f prodcont || true
+
       # Build docker
       - name: Build docker file
         run: docker build -t prodapp .
