@@ -185,6 +185,42 @@ trivy --version
 ---
 
 ## SonarQube (Docker)
+###sonar-project.properties (It tells the Sonar Scanner what to analyze.) in my case i am only using sonar-project.properties
+
+###| Component            | Purpose                                                     |
+| -------------------- | ----------------------------------------------------------- |
+| `SONAR_HOST_URL`     | The destination address (which SonarQube server to send to) |
+| `SONAR_TOKEN`        | Your ID/pass to access the server                           |
+| `sonar.projectKey`   | The specific project on that server                         |
+| `sonar.sources`      | The files to inspect                                        |
+| `sonar.tests`        | The test files                                              |
+| `sonar.*reportPaths` | Where to find reports like coverage                         |
+
+
+
+GitHub Actions
+      │
+      ▼
+Sonar Scanner starts
+      │
+      ├── Uses SONAR_HOST_URL
+      ├── Uses SONAR_TOKEN
+      │
+      ▼
+Connects to SonarQube Server
+      │
+      ├── Reads sonar-project.properties
+      │      ├── projectKey = hotstart
+      │      ├── sources = src
+      │      ├── tests = tests
+      │      └── coverage = coverage/lcov.info
+      │
+      ▼
+Analyzes your code
+      │
+      ▼
+Uploads results to the "hotstart" project
+
 
 ```bash
 docker run -d --name sonarqube \
